@@ -1,0 +1,18 @@
+auth.createUserWithEmailAndPassword(email, password)
+  .then((userCredential) => {
+    const user = userCredential.user;
+    
+    // Save additional details in Firestore
+    return firebase.firestore().collection("users").doc(user.uid).set({
+      email: user.email,
+      role: "student",
+      name: "John Doe",
+      university: "XYZ University"
+    });
+  })
+  .then(() => {
+    console.log("User details saved in Firestore!");
+  })
+  .catch((error) => {
+    console.error("Error:", error.message);
+  });
