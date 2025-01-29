@@ -1,0 +1,18 @@
+When a user logs in, Firebase automatically verifies their credentials and returns user info. If you stored extra data in Firestore, you fetch it like this:
+
+
+
+auth.signInWithEmailAndPassword(email, password)
+  .then((userCredential) => {
+    const user = userCredential.user;
+    
+    return firebase.firestore().collection("users").doc(user.uid).get();
+  })
+  .then((doc) => {
+    if (doc.exists) {
+      console.log("User Data:", doc.data());
+    }
+  })
+  .catch((error) => {
+    console.error("Login error:", error.message);
+  });
