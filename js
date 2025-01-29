@@ -20,16 +20,20 @@ document.getElementById("signup-form").addEventListener("submit", (e) => {
     const name = document.getElementById("signup-name").value;
     const email = document.getElementById("signup-email").value;
     const password = document.getElementById("signup-password").value;
+    const role = document.getElementById("signup-role").value;  // New field
+    const university = document.getElementById("signup-university").value;  // New field
 
     auth.createUserWithEmailAndPassword(email, password)
         .then((userCredential) => {
             const user = userCredential.user;
 
-            // Save additional user details in Firestore
+            // Save additional details in Firestore
             return db.collection("users").doc(user.uid).set({
                 name: name,
                 email: email,
-                role: "student" // Default role
+                role: role,  // Student / Faculty
+                university: university,
+                createdAt: firebase.firestore.FieldValue.serverTimestamp()
             });
         })
         .then(() => {
@@ -38,6 +42,7 @@ document.getElementById("signup-form").addEventListener("submit", (e) => {
         })
         .catch((error) => alert(error.message));
 });
+
 
 // 🔵 Login Function
 document.getElementById("login-form").addEventListener("submit", (e) => {
