@@ -47,4 +47,26 @@
     <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
     <script src="auth.js"></script>
 </body>
+    <form id="signup-form">
+    <input type="text" id="signup-name" placeholder="Full Name" required>
+    <input type="email" id="signup-email" placeholder="Email" required>
+    <input type="password" id="signup-password" placeholder="Password" required>
+    
+    <!-- New Fields -->
+    <select id="signup-role">
+        <option value="student">Student</option>
+        <option value="faculty">Faculty</option>
+    </select>
+    <input type="text" id="signup-university" placeholder="University" required>
+
+    <button type="submit">Sign Up</button>
+</form>
+<div id="dashboard" style="display: none;">
+    <h2>Welcome, <span id="user-name"></span>!</h2>
+    <p>Email: <span id="user-email"></span></p>
+    <p>Role: <span id="user-role"></span></p>
+    <p>University: <span id="user-university"></span></p>
+    <button id="logout">Logout</button>
+</div>
+
 </html>
