@@ -75,6 +75,24 @@ Firebase Hosting is a **fast and secure way to deploy web applications**. It all
 - Firestore is **a cloud database** for storing data.  
 - Firebase Hosting **deploys websites** on Google’s servers.  
 
----
+---What you skip by using Firebox
+Backend Setup:
 
-Would you like me to guide you through setting up Firestore and Firebase Hosting step by step? 🚀
+No server-side logic is implemented. This means you cannot:
+Process user input dynamically.
+Fetch real-time data from APIs or databases.
+Handle authentication, authorization, or user roles.
+Database Management:
+
+Firebox doesn’t allow integration with real databases like MongoDB or MySQL.
+Instead, you’ll use static data or mock APIs for testing.
+Complex Features:
+
+Dynamic updates, such as chat systems, notifications, or dashboards, are absent.
+No support for real-time data handling using tools like WebSockets.
+Security:
+
+Since there's no backend, there's no encryption or protection for sensitive data like passwords.
+Hosting for Scale:
+
+Firebox prototypes are hosted for design purposes, not for serving actual user traffic or scaling to production needs.
