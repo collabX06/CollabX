@@ -45,18 +45,23 @@ document.getElementById("signup-form").addEventListener("submit", (e) => {
 
 
 // 🔵 Login Function
-document.getElementById("login-form").addEventListener("submit", (e) => {
-    e.preventDefault();
+function fetchUserData(uid) {
+    db.collection("users").doc(uid).get()
+        .then((doc) => {
+            if (doc.exists) {
+                document.getElementById("user-name").innerText = doc.data().name;
+                document.getElementById("user-email").innerText = doc.data().email;
+                document.getElementById("user-role").innerText = doc.data().role;
+                document.getElementById("user-university").innerText = doc.data().university;
 
-    const email = document.getElementById("login-email").value;
-    const password = document.getElementById("login-password").value;
-
-    auth.signInWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-            fetchUserData(userCredential.user.uid);
+                document.getElementById("dashboard").style.display = "block";
+                document.getElementById("login-container").style.display = "none";
+                document.getElementById("signup-container").style.display = "none";
+            }
         })
-        .catch((error) => alert(error.message));
-});
+        .catch((error) => console.error("Error fetching user data:", error));
+}
+
 
 // 🔴 Google Sign-In
 document.getElementById("google-login").addEventListener("click", () => {
